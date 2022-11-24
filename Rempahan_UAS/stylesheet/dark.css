@@ -1,0 +1,77 @@
+body.dark {
+    background-color: black;
+}
+
+.dark .header {
+    background-image: url(../gambar/darkcover.jpg);
+    color: white;
+}
+
+.dark .navbar {
+    background-color: black;
+    color: white;
+}
+
+.dark .nav-menu a {
+    color: white;
+    border-bottom: white solid;
+}
+
+.dark .header span {
+    color: white;
+}
+
+.dark .header p {
+    color: white
+}
+
+.dark .section {
+    border: 5px white solid;
+    box-shadow: 0px 10px 10px rgba(208, 206, 206, 0.2);
+    color: black;
+}
+
+.dark .main {
+    background-color: black;
+    color: rgb(0, 0, 0);
+}
+
+.dark button {
+    background-color: white;
+    color: black;
+}
+
+.dark .about {
+    border-top: white solid;
+    color: white;
+}
+
+.dark .about h3 {
+    color: white;
+}
+
+.dark .about span {
+    color: white;
+}
+
+.dark .form-req {
+    border-top: white solid;
+}
+
+.dark .footer {
+    background-color: black;
+    color: white;
+    border-top: white solid;
+}
+
+.dark .list-info {
+    color: white;
+}
+
+.dark nav {
+    color: white;
+}
+
+.dark .main .card-text {
+    color: black;
+}

@@ -1,0 +1,368 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    background-color: white;
+    transition: .5s;
+}
+
+.navbar {
+    background-color: white;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-content: space-between;
+}
+
+.navbar h1 {
+    font-family: 'Kristi', cursive;
+    font-size: 40px;
+}
+
+.navbar a {
+    color: #000;
+    font-weight: bold;
+    border-bottom: rgba(14, 13, 13, 0.2) solid;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 40px;
+    font-size: 20px;
+}
+
+
+/* tombol mode gelap */
+
+input[type="checkbox"]#mode {
+    margin-bottom: auto;
+    margin-left: 90%;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    appearance: none;
+    background-color: black;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: .5s ease;
+}
+
+input[type="checkbox"]#mode:checked {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    appearance: none;
+    background-color: gray;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: .5s ease;
+}
+
+.swicth-mode {
+    /* padding: 50px; */
+    float: right;
+    margin-top: 30px;
+    margin-right: 20px;
+    padding-right: 30px;
+}
+
+input[type="checkbox"]#mode::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transform: .5s ease;
+}
+
+input[type="checkbox"]#mode:checked::before {
+    transform: translateX(20px);
+}
+
+.header {
+    background: url(../gambar/spices-herbs.jpg);
+    background-size: cover;
+    height: 200%;
+    padding-left: 10%;
+    padding-right: 15%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px;
+}
+
+.header p {
+    font-size: 30px;
+    color: #000;
+}
+
+.tagline {
+    display: flex;
+    flex-direction: column;
+}
+
+.tagline span {
+    font-family: 'Kristi', cursive;
+    font-size: 60px;
+    color: #000;
+}
+
+#btn {
+    font-size: 20px;
+    color: red;
+}
+
+.main {
+    height: 100%;
+    padding-top: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-color: white;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 6px solid #897249;
+    border-radius: 10px;
+    font-weight: bold;
+    gap: 20px;
+    box-shadow: 0px 10px 10px rgba(14, 13, 13, 0.2);
+    /* background-color: red; */
+}
+
+.section-con {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.contents {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.about {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
+    border-top: rgba(14, 13, 13, 0.2) solid;
+    font-size: 20px;
+}
+
+.about h3 {
+    font-size: 40px;
+    color: #897249;
+}
+
+.about span {
+    color: #897249;
+    font-weight: bold;
+}
+
+.form-req {
+    align-items: center;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border-top: rgba(14, 13, 13, 0.2) solid;
+    font-size: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+button {
+    background-color: #897249;
+    border-color: #897249;
+    border-radius: 20%;
+    text-decoration: none;
+    color: white;
+    /* padding: 20px 20px; */
+    /* margin: 20px 20px; */
+    cursor: pointer;
+}
+
+.footer {
+    padding-left: 10%;
+    padding-right: 10%;
+    border-top: rgba(14, 13, 13, 0.2) solid;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fot-list img {
+    display: flex;
+    padding: 20px;
+}
+
+.link_info {
+    margin-left: 30%;
+    text-align: center;
+    font-size: larger;
+    color: black;
+    text-decoration: none;
+}
+
+.walcome {
+    margin-top: 10%;
+    margin-bottom: 0%;
+    font-size: 20px;
+}
+
+.box {
+    /* padding-top: -50px; */
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* padding-left:20px ; */
+    margin: 10px -170px 100px;
+}
+
+.box {
+    /* padding-top: -50px; */
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* padding-left:20px ; */
+    margin: 10px -170px 100px;
+}
+
+.box a div {
+    /* height: 100%; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+}
+
+table {
+    margin-top: 10px;
+}
+
+th {
+    font-size: 20px;
+}
+
+td img {
+    width: 100px;
+}
+
+td {
+    text-align: center;
+}
+
+table,
+tr {
+    padding: 10px 50px 20px 50px;
+    color: var(--secondary);
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: var(--secondary);
+}
+
+th,
+td {
+    border-bottom: 3px solid var(--secondary);
+    padding: 20px 50px 20px 50px;
+}
+
+.cari_input {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* responsive  */
+
+@media only screen and (max-width: 400px) {
+    body {
+        height: auto;
+    }
+    .header {
+        flex-wrap: wrap;
+        height: auto;
+        font-size: small;
+    }
+    .header img {
+        width: 200px;
+        height: 200px;
+        align-items: center;
+    }
+    .contents h2 {
+        text-align: center;
+    }
+    .navbar {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+    .section-con {
+        flex-wrap: wrap;
+    }
+    .main {
+        height: auto;
+        padding: auto;
+        padding-top: 2%;
+        margin-bottom: auto;
+        box-sizing: border-box;
+        margin: 0px;
+    }
+    .swicth-mode {
+        margin-left: 70%;
+    }
+    .tagline {
+        margin-left: 30%;
+        font-size: smaller;
+    }
+}
+
+.main-dashboard {
+    margin-left: 30%;
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 20px;
+}
