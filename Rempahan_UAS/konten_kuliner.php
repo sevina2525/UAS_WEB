@@ -25,21 +25,20 @@
 <body >
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <nav class="navbar navbar-expand-lg nav-light bg-light" aria-label="Offcanvas navbar large">
+<nav class="navbar navbar-expand-lg nav-light bg-light" aria-label="Light offcanvas navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">RempahanRempah</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+        <h1 class="navbar-brand" href="#"><b>RempahanRempah</b></h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasLightLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h2 class="mb-3 mb-md-0 text-muted"><b>Menu</b></h2>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="dashboard.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li>
                             <div class="swicth-mode">
@@ -50,14 +49,30 @@
                 </div>
             </div>
     </nav>
+
+    <!-- class="offcanvas-title" -->
+    <!-- id="offcanvasNavbarLightLabel" -->
+
     <div class="main">
-    <h1>Data Kuliner</h1>
-        <div class="cari_input">
-        <form class="box-cari" method= "get" action="">
-            <input type="text" placeholder= "Cari Data ..." name="cari" value="<?php if(isset($_GET['cari'])){echo $_GET['cari'];} ?>">
-            <button type="submit">cari</button>
-        </form>  
+    <h2 class="mb-3 mb-md-0 text-muted">DATA KULINER</h2>
+    <form class="form-inline" >
+        <div class="form-group">
+          <select class="form-control" id="Kolom" name="Kolom" required="">
+            <?php
+              $kolom=(isset($_GET['Kolom']))? $_GET['Kolom'] : "";
+            ?>
+            <option value="judul" <?php if ($kolom=="judul") echo "selected"; ?>>Judul</option>
+            <option value="deskripsi" <?php if ($kolom=="deskripsi") echo "selected";?>>Deskripsi</option>
+          </select>
         </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="KataKunci" name="KataKunci" placeholder="Kata kunci.." required="" value="<?php if (isset($_GET['KataKunci']))  echo $_GET['KataKunci']; ?>">
+        </div>
+        <button type="submit" class="btn btn-primary">Cari</button>
+        <a href="konten_kuliner.php" class="btn btn-danger">Reset</a>
+    </form> 
+
+
         <table class="table table-striped table-hover" >
         <thead>
             <tr class="table-primary">
@@ -67,19 +82,32 @@
                 <th>Resep</th>
             </tr>
         </thead>
-            <?php 
-                include "koneksi.php";
-                if (isset($_GET['cari'])){
-                    $pencarian= $_GET['cari'];
-                    $query = "SELECT * FROM kuliner WHERE judul LIKE '%".$pencarian."%' OR deskripsi LIKE '%".$pencarian."%'";  
-                }else{
-                    $query= "SELECT * FROM kuliner";
-                }
+        <?php
+            include "koneksi.php";
+            
+            $page = (isset($_GET['page']))? (int) $_GET['page'] : 1;
+   
+            $kolomCari=(isset($_GET['Kolom']))? $_GET['Kolom'] : "";
+    
+            $kolomKataKunci=(isset($_GET['KataKunci']))? $_GET['KataKunci'] : "";
 
+            // Jumlah data per halaman
+            $limit = 5;
 
-                $read = mysqli_query($conn, $query);
-                while($row = mysqli_fetch_assoc($read)){
-            ?>
+            $limitStart = ($page - 1) * $limit;
+            
+            //kondisi jika parameter pencarian kosong
+            if($kolomCari=="" && $kolomKataKunci==""){
+                $SqlQuery = mysqli_query($conn, "SELECT * FROM kuliner LIMIT ".$limitStart.",".$limit);
+            }else{
+                //kondisi jika parameter cari pencarian diisi
+                $SqlQuery = mysqli_query($conn, "SELECT * FROM kuliner WHERE $kolomCari LIKE '%$kolomKataKunci%' LIMIT ".$limitStart.",".$limit);
+            }
+            
+            $no = $limitStart + 1;
+            
+            while($row = mysqli_fetch_array($SqlQuery)){ 
+        ?>
             <tbody class="table-group-divider" >
             <tr class="table-info">
                 <td><?php echo $row['judul'] ?></td>
@@ -92,25 +120,113 @@
         ?>
         </tbody>
         </table>
-    </div>
-    </div>
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                </a>
-                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 RempahanRempah, Inc</span>
-            </div>
 
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-            </ul>
-        </footer>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- LINK NAVIGASI -->
+    <div align="center">
+    <!-- Previous navigation -->
+    <?php
+      // Jika page = 1, maka LinkPrev disable
+      if($page == 1){ 
+    ?>        
+      <!-- link Previous Page disable --> 
+      <a href="#">Previous</a>
+    <?php
+      }
+      else{ 
+        $LinkPrev = ($page > 1)? $page - 1 : 1;  
+
+        if($kolomCari=="" && $kolomKataKunci==""){
+        ?>
+          <a href="konten_kuliner.php?page=<?php echo $LinkPrev; ?>">Previous</a>
+     <?php     
+        }else{
+      ?> 
+        <a href="konten_kuliner.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $LinkPrev;?>">Previous</a>
+       <?php
+         } 
+      }
+    ?>
+
+    <!-- Angka Navigation -->
+    <?php
+      //kondisi jika parameter pencarian kosong
+      if($kolomCari=="" && $kolomKataKunci==""){
+        $SqlQuery = mysqli_query($conn, "SELECT * FROM kuliner");
+      }else{
+        //kondisi jika parameter kolom pencarian diisi
+        $SqlQuery = mysqli_query($conn, "SELECT * FROM kuliner WHERE $kolomCari LIKE '%$kolomKataKunci%'");
+      }     
+    
+      //Hitung semua jumlah data yang berada pada tabel Sisawa
+      $JumlahData = mysqli_num_rows($SqlQuery);
+      
+      // Hitung jumlah halaman yang tersedia
+      $jumlahPage = ceil($JumlahData / $limit); 
+      
+      // Jumlah link number 
+      $jumlahNumber = 1; 
+
+      // Untuk awal link number
+      $startNumber = ($page > $jumlahNumber)? $page - $jumlahNumber : 1; 
+      
+      // Untuk akhir link number
+      $endNumber = ($page < ($jumlahPage - $jumlahNumber))? $page + $jumlahNumber : $jumlahPage; 
+      
+      for($i = $startNumber; $i <= $endNumber; $i++){
+        $linkActive = ($page == $i)? ' class="active"' : '';
+
+        if($kolomCari=="" && $kolomKataKunci==""){
+    ?>
+        <?php $linkActive; ?><a href="konten_kuliner.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+
+    <?php
+      }else{
+        ?>
+        <?php $linkActive; ?><a href="konten_kuliner.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php
+      }
+    }
+    ?>
+    
+    <!-- Next Navigation -->
+    <?php       
+     if($page == $jumlahPage){ 
+    ?>
+      <a href="#">Next</a>
+    <?php
+    }
+    else{
+      $linkNext = ($page < $jumlahPage)? $page + 1 : $jumlahPage;"<br>";
+    if($kolomCari=="" && $kolomKataKunci==""){
+      ?>
+        <a href="konten_kuliner.php?page=<?php echo $linkNext; ?>">Next</a>
+    <?php     
+      }else{
+    ?> 
+        <li><a href="konten_kuliner.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $linkNext; ?>">Next</a></li><br>
+  <?php
+    }
+  }
+  ?>
+</div>
+</div>
+<div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                    </a>
+                    <span class="mb-3 mb-md-0 text-muted">&copy; 2022 RempahanRempah, Inc</span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+                </ul>
+            </footer>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="facebook" viewBox="0 0 16 16">
               <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
             </symbol>
@@ -122,6 +238,7 @@
             </symbol>
           </svg>
     <script src="js/js.js"></script>
+    
     
     
 </body>
