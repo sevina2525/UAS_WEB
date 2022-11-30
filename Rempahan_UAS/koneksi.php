@@ -2,7 +2,7 @@
     $hostname = 'localhost';
     $username = 'root';
     $password = '';
-    $database = 'uas_web';
+    $database = 'rempahan';
 
     $conn = mysqli_connect($hostname, $username, $password, $database);
 
