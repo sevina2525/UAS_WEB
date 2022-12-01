@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../stylesheet/navbar.css" rel="stylesheet">
+    <link href="stylesheet/navbar.css" rel="stylesheet">
         
 </head>
 <body >
@@ -40,7 +40,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index2.html">Home</a>
                         </li>
                         <li>
                             <div class="swicth-mode">
@@ -53,7 +53,7 @@
     </nav>
 
     <div class="main">
-    <h2 class="mb-3 mb-md-0 text-muted">DATA KECANTIKAN</h2>
+    <h2 class="mb-3 mb-md-0 text-muted">DATA KECANTIKAN</h2> <br>
     <form class="form-inline" >
         <div class="form-group">
           <select class="form-control" id="Kolom" name="Kolom" required="">
@@ -66,11 +66,10 @@
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="KataKunci" name="KataKunci" placeholder="Kata kunci.." required="" value="<?php if (isset($_GET['KataKunci']))  echo $_GET['KataKunci']; ?>">
-        </div>
+        </div> <br>
         <button type="submit" class="btn btn-primary">Cari</button>
         <a href="konten_kecantikan.php" class="btn btn-danger">Reset</a>
     </form> 
-
 
         <table class="table table-striped table-hover" >
         <thead>
@@ -102,8 +101,6 @@
                 //kondisi jika parameter cari pencarian diisi
                 $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan WHERE $kolomCari LIKE '%$kolomKataKunci%' LIMIT ".$limitStart.",".$limit);
             }
-            
-            $no = $limitStart + 1;
             
             while($row = mysqli_fetch_array($SqlQuery)){ 
         ?>
@@ -242,3 +239,4 @@
     
 </body>
 </html>
+
