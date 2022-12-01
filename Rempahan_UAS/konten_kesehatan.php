@@ -1,5 +1,7 @@
 <?php
     require('koneksi.php');
+
+
 ?>
 
 
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../stylesheet/navbar.css" rel="stylesheet">
+    <link href="stylesheet/navbar.css" rel="stylesheet">
         
 </head>
 <body >
@@ -38,7 +40,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index2.html">Home</a>
                         </li>
                         <li>
                             <div class="swicth-mode">
@@ -51,7 +53,7 @@
     </nav>
 
     <div class="main">
-    <h2 class="mb-3 mb-md-0 text-muted">DATA KESEHATAN</h2>
+    <h2 class="mb-3 mb-md-0 text-muted">DATA KECANTIKAN</h2> <br>
     <form class="form-inline" >
         <div class="form-group">
           <select class="form-control" id="Kolom" name="Kolom" required="">
@@ -64,11 +66,10 @@
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="KataKunci" name="KataKunci" placeholder="Kata kunci.." required="" value="<?php if (isset($_GET['KataKunci']))  echo $_GET['KataKunci']; ?>">
-        </div>
+        </div> <br>
         <button type="submit" class="btn btn-primary">Cari</button>
-        <a href="konten_kesehatan.php" class="btn btn-danger">Reset</a>
+        <a href="konten_kecantikan.php" class="btn btn-danger">Reset</a>
     </form> 
-
 
         <table class="table table-striped table-hover" >
         <thead>
@@ -95,13 +96,11 @@
             
             //kondisi jika parameter pencarian kosong
             if($kolomCari=="" && $kolomKataKunci==""){
-                $SqlQuery = mysqli_query($conn, "SELECT * FROM kesehatan LIMIT ".$limitStart.",".$limit);
+                $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan LIMIT ".$limitStart.",".$limit);
             }else{
                 //kondisi jika parameter cari pencarian diisi
-                $SqlQuery = mysqli_query($conn, "SELECT * FROM kesehatan WHERE $kolomCari LIKE '%$kolomKataKunci%' LIMIT ".$limitStart.",".$limit);
+                $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan WHERE $kolomCari LIKE '%$kolomKataKunci%' LIMIT ".$limitStart.",".$limit);
             }
-            
-            $no = $limitStart + 1;
             
             while($row = mysqli_fetch_array($SqlQuery)){ 
         ?>
@@ -134,11 +133,11 @@
 
         if($kolomCari=="" && $kolomKataKunci==""){
         ?>
-          <a href="konten_kesehatan.php?page=<?php echo $LinkPrev; ?>">Previous</a>
+          <a href="konten_kecantikan.php?page=<?php echo $LinkPrev; ?>">Previous</a>
      <?php     
         }else{
       ?> 
-        <a href="konten_kesehatan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $LinkPrev;?>">Previous</a>
+        <a href="konten_kecantikan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $LinkPrev;?>">Previous</a>
        <?php
          } 
       }
@@ -148,10 +147,10 @@
     <?php
       //kondisi jika parameter pencarian kosong
       if($kolomCari=="" && $kolomKataKunci==""){
-        $SqlQuery = mysqli_query($conn, "SELECT * FROM kesehatan");
+        $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan");
       }else{
         //kondisi jika parameter kolom pencarian diisi
-        $SqlQuery = mysqli_query($conn, "SELECT * FROM kesehatan WHERE $kolomCari LIKE '%$kolomKataKunci%'");
+        $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan WHERE $kolomCari LIKE '%$kolomKataKunci%'");
       }     
     
       //Hitung semua jumlah data yang berada pada tabel Sisawa
@@ -174,12 +173,12 @@
 
         if($kolomCari=="" && $kolomKataKunci==""){
     ?>
-        <?php $linkActive; ?><a href="konten_kesehatan.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php $linkActive; ?><a href="konten_kecantikan.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 
     <?php
       }else{
         ?>
-        <?php $linkActive; ?><a href="konten_kesehatan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php $linkActive; ?><a href="konten_kecantikan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
         <?php
       }
     }
@@ -196,11 +195,11 @@
       $linkNext = ($page < $jumlahPage)? $page + 1 : $jumlahPage;"<br>";
     if($kolomCari=="" && $kolomKataKunci==""){
       ?>
-        <a href="konten_kesehatan.php?page=<?php echo $linkNext; ?>">Next</a>
+        <a href="konten_kecantikan.php?page=<?php echo $linkNext; ?>">Next</a>
     <?php     
       }else{
     ?> 
-        <li><a href="konten_kesehatan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $linkNext; ?>">Next</a></li><br>
+        <li><a href="konten_kecantikan.php?Kolom=<?php echo $kolomCari;?>&KataKunci=<?php echo $kolomKataKunci;?>&page=<?php echo $linkNext; ?>">Next</a></li><br>
   <?php
     }
   }
