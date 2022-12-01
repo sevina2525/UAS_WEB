@@ -36,7 +36,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <nav class="navbar navbar-expand-lg nav-light bg-light" aria-label="Light offcanvas navbar">
         <div class="container-fluid">
-        <h1 class="navbar-brand" href="#"><b>RempahanRempah</b></h1>
+        <h1 class="navbar-brand" href="#"><b>Admin RempahanRempah</b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -74,7 +74,7 @@
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="KataKunci" name="KataKunci" placeholder="Kata kunci.." required="" value="<?php if (isset($_GET['KataKunci']))  echo $_GET['KataKunci']; ?>">
-        </div>
+        </div> <br>
         <button type="submit" class="btn btn-primary">Cari</button>
         <a href="admin_data_kecantikan.php" class="btn btn-danger">Reset</a>
     </form> 
@@ -113,7 +113,7 @@
                 $SqlQuery = mysqli_query($conn, "SELECT * FROM kecantikan WHERE $kolomCari LIKE '%$kolomKataKunci%' LIMIT ".$limitStart.",".$limit);
             }
             
-            $no = $limitStart + 1;
+            
             
             while($row = mysqli_fetch_array($SqlQuery)){ 
         ?>
