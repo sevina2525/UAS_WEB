@@ -10,3 +10,5 @@ Judul : RempahanRempah
   Rempahan rempah adalah website yang dapat memberikan user informasi terkait penggunaan rempah dalam kuliner, kesehatan maupun kecantikan. User hanya dapat melihat informasi.
   Di website ini, admin dapat login dengan link website yang berbeda. admin dapat mengedit, menghapus, melihat dan menambahkan data. Untuk mempermudah mencari data, admin dapat mencari datanya.
   
+  Halaman admin dapat dibukan pada index.html sedangkan halaman user dapat dibuka dengan index2.html.
+  Pada halaman hosting, kami menyediakan 2 domain untuk user dan admin.
